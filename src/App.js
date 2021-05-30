@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { Canvas } from '@react-three/fiber'
+
 
 function App() {
+  const [active, setActive] = useState(false)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div id="canvas-container">
+      <Canvas>
+        <ambientLight
+          intensity={0.1}
+        />
+
+        <directionalLight
+          color="white"
+          position={[0, 0, 5]}
+        />
+
+        <mesh
+          scale={active ? 1.5 : 1}
+          onClick={() => setActive(!active)}
         >
-          Learn React
-        </a>
-      </header>
+          <boxGeometry
+            args={[3, 3, 3]}
+          />
+          <meshNormalMaterial
+            wireframe={true}
+          />
+        </mesh>
+      </Canvas>
     </div>
   );
 }
