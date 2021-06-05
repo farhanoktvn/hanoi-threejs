@@ -27,13 +27,13 @@ const App = () => {
             radius={4}
             discPosition={[0, 0]}
             stackPos={1}
-            color={'aqua'}
+            color={'red'}
           />
           <TowerDisc
             radius={3}
             discPosition={[0, 0]}
             stackPos={2}
-            color={'cadetblue'}
+            color={'blue'}
           />
         </Suspense>
         <OrbitControls />
