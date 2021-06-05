@@ -1,24 +1,6 @@
 import React, { useRef } from 'react'
 import { Shape } from 'three'
 
-// var parts = []
-
-// const TowerDisc = (props) => {
-//   const towerDisc = useRef()
-
-//   parts.push(<Disc {...props} top={true} />)
-//   parts.push(<Disc {...props} top={false} />)
-//   parts.push(<DiscWall {...props} length={props.radius - 0.5} />)
-
-//   return (
-//     <group
-//       ref={towerDisc}
-//     >
-//       {parts}
-//     </group>
-//   );
-// }
-
 const TowerDisc = (props) => {
   const towerDisc = useRef()
 
@@ -29,7 +11,7 @@ const TowerDisc = (props) => {
   return (
     <mesh
       ref={towerDisc}
-      position={[0, stackPosition(props.stackPos, discHeight), 0]}
+      position={[props.discPosition[0], stackPosition(props.stackPos, discHeight), props.discPosition[1]]}
       rotation={[-(Math.PI / 2), 0, 0]}
     >
       <extrudeGeometry

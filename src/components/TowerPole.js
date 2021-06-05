@@ -5,8 +5,8 @@ const TowerPole = (props) => {
   const towerRod = useRef()
 
   // Object Sizing
-  const boxWidth = 10
-  const boxLength = 10
+  const boxWidth = 12
+  const boxLength = 12
   const boxHeight = 0.5
 
   const cylinderRadius = 0.4

@@ -7,6 +7,11 @@ import TowerPole from './components/TowerPole'
 import TowerDisc from './components/TowerDisc'
 
 const App = () => {
+
+  const leftTowerPos = [-15, 0]
+  const centerTowerPos = [0, 0]
+  const rightTowerPos = [15, 0]
+
   return (
     <div id="canvas-container">
       <Canvas
@@ -19,27 +24,40 @@ const App = () => {
           {/* Base of Poles */}
           <BasePlane />
           {/* Tower Poles */}
-          <TowerPole towerPosition={[0, 0]} />
-          <TowerPole towerPosition={[15, 0]} />
-          <TowerPole towerPosition={[-15, 0]} />
+          <TowerPole towerPosition={leftTowerPos} />
+          <TowerPole towerPosition={centerTowerPos} />
+          <TowerPole towerPosition={rightTowerPos} />
           {/* Tower Discs */}
-          <TowerDisc
-            radius={4}
-            discPosition={[0, 0]}
-            stackPos={1}
-            color={'red'}
-          />
-          <TowerDisc
-            radius={3}
-            discPosition={[0, 0]}
-            stackPos={2}
-            color={'blue'}
-          />
+          {initDiscs(8, leftTowerPos)}
         </Suspense>
         <OrbitControls />
       </Canvas>
     </div>
   );
+}
+
+function initDiscs(pieces, discPosition) {
+
+  const maxRadius = 5
+  const minRadius = 1.25
+  const radiusDiff = (maxRadius - minRadius) / pieces
+  const colours = [
+    'firebrick', 'blueviolet', 'chocolate', 'coral', 'crimson', 'darkkhaki', 'darkorange', 'indigo'
+  ]
+
+  let comps = []
+
+  for (let i = 0; i < pieces; i++) {
+    comps.push(<TowerDisc
+      radius={maxRadius - (i * radiusDiff)}
+      discPosition={discPosition}
+      stackPos={i + 1}
+      color={colours[i]}
+    />)
+  }
+
+  return comps
+
 }
 
 export default App;
